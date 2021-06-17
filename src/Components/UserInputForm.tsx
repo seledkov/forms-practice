@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { MutableRefObject } from 'react';
 import { ChangeEvent } from 'react';
 import './UserInputForm.scss';
 
@@ -12,8 +11,10 @@ const UserInput = (props: any) => {
 
   const formSubmitHandler = (event: any) => {
     event.preventDefault();
-    const nameValue = nameInputRef.current.value;
-    console.log(nameValue);
+    const enteredNameValue = nameInputRef.current.value;
+    console.log(enteredNameValue);
+    // nameInputRef.current.value = ''; // dom manipulation
+    setEnteredName('');
   };
   return (
     <form className='user-input-form' onSubmit={formSubmitHandler}>
@@ -22,7 +23,13 @@ const UserInput = (props: any) => {
           Your Name: {enteredName}
           {/* {nameInputRef.current.value} */}
         </label>
-        <input id='name' type='text' onChange={nameInputChangeHandler} ref={nameInputRef} />
+        <input
+          id='name'
+          type='text'
+          onChange={nameInputChangeHandler}
+          ref={nameInputRef}
+          value={enteredName}
+        />
       </div>
       <div className='user-input-form__actions'>
         <button type='submit'>submit</button>
