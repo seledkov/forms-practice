@@ -3,14 +3,21 @@
   margin: 10px auto;
   padding: 20px;
   border-radius: 5px;
-  background-color: rgb(218, 218, 218);
+  background-color: rgb(255, 255, 255);
   label {
     display: block;
+    margin-bottom: 10px;
   }
   &__name {
     margin-bottom: 10px;
+    &_error input {
+      background-color: rgba(255, 0, 0, 0.226);
+    }
   }
   &__actions {
     text-align: right;
+  }
+  &__error-message {
+    color: rgb(148, 0, 0);
   }
 }
