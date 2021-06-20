@@ -1,18 +1,26 @@
-import React, { useState, useRef, FormEvent } from 'react';
-import { ChangeEvent } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import './UserInputForm.scss';
 
 const UserInput = (props: any) => {
   const [enteredName, setEnteredName] = useState('');
-  const [isValidEnteredName, setIsValidEnteredName] = useState(true);
+  const [isValidEnteredName, setIsValidEnteredName] = useState(false);
+  const [isTouchedEnteredName, setIsTouchedEnteredName] = useState(false);
+
   const nameInputRef: any = useRef();
   const nameInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setEnteredName(event.target.value);
   };
+  useEffect(() => {
+    if (isValidEnteredName) {
+      console.log('name input is valid');
+    }
+  }, [isValidEnteredName]);
 
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
     const enteredNameValue = nameInputRef.current.value;
+    setIsTouchedEnteredName(true);
     if (enteredName.trim().length === 0) {
       setIsValidEnteredName(false);
       return;
@@ -22,9 +30,10 @@ const UserInput = (props: any) => {
     // nameInputRef.current.value = ''; // bad practice - dom manipulation, this js, not react better use state for shadow dom activate
     setEnteredName('');
   };
+  const isInvalidNameInput = !isValidEnteredName && isTouchedEnteredName;
   return (
     <form className='user-input-form' onSubmit={formSubmitHandler}>
-      <div className={isValidEnteredName ? 'user-input-form__name' : 'user-input-form__name_error'}>
+      <div className={isInvalidNameInput ? 'user-input-form__name_error' : 'user-input-form__name'}>
         <label htmlFor='name'>
           Your Name: {enteredName}
           {/* {nameInputRef.current.value} */}
@@ -36,7 +45,7 @@ const UserInput = (props: any) => {
           ref={nameInputRef}
           value={enteredName}
         />
-        {!isValidEnteredName && (
+        {isInvalidNameInput && (
           <p className='user-input-form__error-message'> Name must not be empty </p>
         )}
       </div>
