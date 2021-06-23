@@ -6,15 +6,23 @@ const UserInput = (props: any) => {
   const [enteredName, setEnteredName] = useState('');
   // const [isValidEnteredName, setIsValidEnteredName] = useState(false);
   const [isTouchedEnteredName, setIsTouchedEnteredName] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(false);
   // const nameInputRef: any = useRef();
-  // useEffect(() => {
-  //   if (isValidEnteredName) {
-  //     console.log('name input is valid');
-  //   }
-  // }, [isValidEnteredName]);
   const isValidEnteredName = enteredName.trim() !== '';
   const isInvalidNameInput = !isValidEnteredName && isTouchedEnteredName;
 
+  useEffect(() => {
+    if (isValidEnteredName) {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  }, [isValidEnteredName]);
+
+  let formIsValidAlternative = false;
+  if (isValidEnteredName) {
+    formIsValidAlternative = true;
+  }
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
     // const enteredNameValue = nameInputRef.current.value;
@@ -63,7 +71,9 @@ const UserInput = (props: any) => {
         )}
       </div>
       <div className='user-input-form__actions'>
-        <button type='submit'>submit</button>
+        <button disabled={!formIsValidAlternative} type='submit'>
+          submit
+        </button>
       </div>
     </form>
   );
