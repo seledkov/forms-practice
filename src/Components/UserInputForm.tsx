@@ -4,33 +4,45 @@ import './UserInputForm.scss';
 
 const UserInput = (props: any) => {
   const [enteredName, setEnteredName] = useState('');
-  const [isValidEnteredName, setIsValidEnteredName] = useState(false);
+  // const [isValidEnteredName, setIsValidEnteredName] = useState(false);
   const [isTouchedEnteredName, setIsTouchedEnteredName] = useState(false);
-
-  const nameInputRef: any = useRef();
-  const nameInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setEnteredName(event.target.value);
-  };
-  useEffect(() => {
-    if (isValidEnteredName) {
-      console.log('name input is valid');
-    }
-  }, [isValidEnteredName]);
+  // const nameInputRef: any = useRef();
+  // useEffect(() => {
+  //   if (isValidEnteredName) {
+  //     console.log('name input is valid');
+  //   }
+  // }, [isValidEnteredName]);
+  const isValidEnteredName = enteredName.trim() !== '';
+  const isInvalidNameInput = !isValidEnteredName && isTouchedEnteredName;
 
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
-    const enteredNameValue = nameInputRef.current.value;
+    // const enteredNameValue = nameInputRef.current.value;
     setIsTouchedEnteredName(true);
-    if (enteredName.trim().length === 0) {
-      setIsValidEnteredName(false);
+    if (!isValidEnteredName) {
       return;
     }
-    setIsValidEnteredName(true);
-    console.log(enteredNameValue);
+    // if (enteredName.trim() === '') {
+    //   // setIsValidEnteredName(false);
+    //   return;
+    // }
+    // setIsValidEnteredName(true);
     // nameInputRef.current.value = ''; // bad practice - dom manipulation, this js, not react better use state for shadow dom activate
     setEnteredName('');
+    setIsTouchedEnteredName(false);
   };
-  const isInvalidNameInput = !isValidEnteredName && isTouchedEnteredName;
+  const nameInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setEnteredName(event.target.value);
+    // if (event.target.value.trim() !== '') {
+    //   setIsValidEnteredName(true);
+    // }
+  };
+  const nameInputBlurHandler = () => {
+    setIsTouchedEnteredName(true);
+    // if (enteredName.trim() !== '') {
+    //   setIsValidEnteredName(true);
+    // }
+  };
   return (
     <form className='user-input-form' onSubmit={formSubmitHandler}>
       <div className={isInvalidNameInput ? 'user-input-form__name_error' : 'user-input-form__name'}>
@@ -42,7 +54,8 @@ const UserInput = (props: any) => {
           id='name'
           type='text'
           onChange={nameInputChangeHandler}
-          ref={nameInputRef}
+          onBlur={nameInputBlurHandler}
+          // ref={nameInputRef}
           value={enteredName}
         />
         {isInvalidNameInput && (
