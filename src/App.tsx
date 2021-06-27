@@ -1,9 +1,9 @@
 import React from 'react';
-import UserInputForm from './Components/UserInputForm';
+import LoginPage from './Components/Login/LoginPage';
 const App = () => {
   return (
     <div className='App'>
-      <UserInputForm />
+      <LoginPage />
     </div>
   );
 };

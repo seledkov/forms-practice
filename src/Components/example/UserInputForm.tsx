@@ -10,7 +10,7 @@ const UserInput = (props: any) => {
   const [isTouchedEnteredMail, setIsTouchedEnteredMail] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
   // const nameInputRef: any = useRef();
-  const isValidEnteredMail = enteredMail.trim() !== '' && enteredMail.includes('@');
+  const isValidEnteredMail = enteredMail.length >= 5 && enteredMail.includes('@');
   const isValidEnteredName = enteredName.trim() !== '' && enteredName.length > 2;
   const isInvalidNameInput = !isValidEnteredName && isTouchedEnteredName;
   const isInvalidMailInput = !isValidEnteredMail && isTouchedEnteredMail;
@@ -76,10 +76,12 @@ const UserInput = (props: any) => {
         {isInvalidNameInput && (
           <p className='user-input-form__error-message'> Name must not be empty </p>
         )}
+      </div>
+      <div>
         <label htmlFor='email'>Your email: {enteredMail}</label>
         <input
           className={isInvalidMailInput ? 'user-input-form__name_error' : 'user-input-form__name'}
-          type='mail'
+          type='email'
           id='email'
           onBlur={() => {
             setIsTouchedEnteredMail(true);
@@ -90,7 +92,7 @@ const UserInput = (props: any) => {
           value={enteredMail}
         />
         {isInvalidMailInput && (
-          <p className='user-input-form__error-message'> Name must not be empty and need @</p>
+          <p className='user-input-form__error-message'> Name must not be empty and need "@"</p>
         )}
       </div>
 

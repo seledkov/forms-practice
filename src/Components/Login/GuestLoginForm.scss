@@ -1,0 +1,38 @@
+.user-input-form {
+  margin: 10px auto;
+  padding: 20px;
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+  &__input {
+    width: 452px;
+    height: 56px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding-left: 15px;
+    font-family: IBM Plex Sans;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    color: #333333;
+    opacity: 0.9;
+    background: #ffffff;
+    border: 1px solid #bec5cf;
+    &::placeholder {
+      opacity: 0.4;
+    }
+    &_error {
+      border: 1px solid #eb5757;
+    }
+  }
+  &__actions {
+    text-align: right;
+  }
+  &__error-message {
+    color: rgb(148, 0, 0);
+    font-size: 0.8rem;
+  }
+}
