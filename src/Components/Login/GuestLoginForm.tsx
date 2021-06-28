@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import './GuestLoginForm.scss';
+import passShowIcon from '../../img/icons/passShowIcon.svg';
 
 const GuestLoginForm = (props: any) => {
   const [enteredName, setEnteredName] = useState('');
@@ -9,6 +10,8 @@ const GuestLoginForm = (props: any) => {
   const [isTouchedEnteredName, setIsTouchedEnteredName] = useState(false);
   const [isTouchedEnteredPassword, setIsTouchedEnteredPassword] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
+  const [passwordIsShow, setPasswordIsShow] = useState(false);
+
   const isValidEnteredPassword = enteredPassword.length >= 5 && enteredPassword.includes('@');
   const isValidEnteredName = enteredName.trim() !== '' && enteredName.length > 2;
   const isInvalidNameInput = !isValidEnteredName && isTouchedEnteredName;
@@ -45,7 +48,7 @@ const GuestLoginForm = (props: any) => {
   };
   return (
     <form className='user-input-form' onSubmit={formSubmitHandler}>
-      <div>
+      <div className='user-input-form__wrapper'>
         <label htmlFor='name'>Логин</label>
         <input
           className={
@@ -60,11 +63,12 @@ const GuestLoginForm = (props: any) => {
           onBlur={nameInputBlurHandler}
           value={enteredName}
         />
+
         {isInvalidNameInput && isInvalidPasswordInput && (
           <p className='user-input-form__error-message'> Неверный логин или пароль</p>
         )}
       </div>
-      <div>
+      <div className='user-input-form__wrapper'>
         <label htmlFor='password'>Пароль</label>
         <input
           className={
@@ -73,7 +77,7 @@ const GuestLoginForm = (props: any) => {
               : 'user-input-form__input'
           }
           placeholder='Введите пароль'
-          type='password'
+          type={passwordIsShow ? 'text' : 'password'}
           id='password'
           onBlur={() => {
             setIsTouchedEnteredPassword(true);
@@ -82,6 +86,14 @@ const GuestLoginForm = (props: any) => {
             setEnteredPassword(event.target.value);
           }}
           value={enteredPassword}
+        />
+        <img
+          className='user-input-form__input_icon-right'
+          src={passShowIcon}
+          alt='show-password'
+          onClick={() => {
+            setPasswordIsShow((passwordIsShow) => !passwordIsShow);
+          }}
         />
       </div>
 
