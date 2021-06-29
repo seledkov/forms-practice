@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import './GuestLoginForm.scss';
 import passShowIcon from '../../img/icons/passShowIcon.svg';
@@ -8,11 +8,11 @@ const GuestLoginForm = (props: any) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [isTouchedEnteredLogin, setIsTouchedEnteredLogin] = useState(false);
   const [isTouchedEnteredPassword, setIsTouchedEnteredPassword] = useState(false);
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [passwordIsShow, setPasswordIsShow] = useState(true);
-  // validation
-  const isValidEnteredLogin = enteredLogin.trim() !== '' && enteredLogin.length >= 4;
-  const isValidEnteredPassword = enteredPassword.trim() !== '' && enteredPassword.length >= 4;
+  //validation
+  const isValidEnteredLogin = enteredLogin.length > 4 && enteredLogin.trim() !== '';
+  const isValidEnteredPassword = enteredPassword.length > 4 && enteredPassword.trim() !== '';
   //style check
   const isInvalidLoginInput = !isValidEnteredLogin && isTouchedEnteredLogin;
   const isInvalidPasswordInput = !isValidEnteredPassword && isTouchedEnteredPassword;
@@ -24,13 +24,26 @@ const GuestLoginForm = (props: any) => {
     setIsTouchedEnteredLogin(true);
   };
 
+  const passwordInputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setEnteredPassword(event.target.value);
+  };
+  const passwordInputBlurHandler = () => {
+    setIsTouchedEnteredPassword(true);
+  };
+
+  const passwordShowToogle = () => {
+    setPasswordIsShow((passwordIsShow) => !passwordIsShow);
+  };
+
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
-    if (!formIsValid) {
+
+    if (!isValidEnteredLogin || !isValidEnteredPassword) {
+      setIsError(true);
       return;
     }
-    setFormIsValid(true);
     props.onSetIsLogin(true);
+    setIsError(false);
     setEnteredLogin('');
     setEnteredPassword('');
     setIsTouchedEnteredLogin(false);
@@ -55,9 +68,7 @@ const GuestLoginForm = (props: any) => {
           value={enteredLogin}
         />
 
-        {!formIsValid && (
-          <p className='user-input-form__error-message'> Неверный логин или пароль</p>
-        )}
+        {isError && <p className='user-input-form__error-message'> Неверный логин или пароль</p>}
       </div>
       <div className='user-input-form__wrapper'>
         <label htmlFor='password'>Пароль</label>
@@ -70,21 +81,15 @@ const GuestLoginForm = (props: any) => {
           placeholder='Введите пароль'
           type={passwordIsShow ? 'text' : 'password'}
           id='password'
-          onBlur={() => {
-            setIsTouchedEnteredPassword(true);
-          }}
-          onChange={(event) => {
-            setEnteredPassword(event.target.value);
-          }}
+          onBlur={passwordInputBlurHandler}
+          onChange={passwordInputChangeHandler}
           value={enteredPassword}
         />
         <img
           className='user-input-form__input_icon-right'
           src={passShowIcon}
           alt='show-password'
-          onClick={() => {
-            setPasswordIsShow((passwordIsShow) => !passwordIsShow);
-          }}
+          onClick={passwordShowToogle}
         />
       </div>
 
