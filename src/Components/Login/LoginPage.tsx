@@ -2,7 +2,7 @@ import React from 'react';
 import GuestLoginForm from './GuestLoginForm';
 import './LoginPage.scss';
 
-const LoginPage = () => {
+const LoginPage = (props: any) => {
   return (
     <section className='login-page'>
       <div className='login-page__wrapper'>
@@ -10,7 +10,7 @@ const LoginPage = () => {
         <div className='login-page__content'>
           <div> На главную</div>
           <div className='login-page__title'>Добро пожаловать в testsystem</div>
-          <GuestLoginForm />
+          <GuestLoginForm onSetIsLogin={props.onSetIsLogin} />
           <div>Вы можете войти через ЕСИА</div>
           <div>У Вас еще нет аккаунта? Зарегистрируйтесь</div>
         </div>

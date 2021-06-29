@@ -41,7 +41,8 @@
     text-align: right;
   }
   &__error-message {
-    color: rgb(148, 0, 0);
-    font-size: 0.8rem;
+    font-size: 14px;
+    line-height: 18px;
+    color: #eb5757;
   }
 }
