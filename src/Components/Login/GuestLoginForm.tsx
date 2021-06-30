@@ -92,9 +92,18 @@ const GuestLoginForm = (props: any) => {
           onClick={passwordShowToogle}
         />
       </div>
+      <div>
+        <div>
+          <label htmlFor='remember-checkbox'> Запомнить меня</label>
+          <input type='checkbox' id='remember-checkbox' className='user-input-form__checkbox' />
+        </div>
 
+        <a href='#'>Забыли пароль? </a>
+      </div>
       <div className='user-input-form__actions'>
-        <button type='submit'>Войти</button>
+        <button className='user-input-form__actions-button' type='submit'>
+          Войти
+        </button>
       </div>
     </form>
   );

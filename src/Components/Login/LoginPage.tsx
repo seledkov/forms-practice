@@ -11,8 +11,12 @@ const LoginPage = (props: any) => {
           <div> На главную</div>
           <div className='login-page__title'>Добро пожаловать в testsystem</div>
           <GuestLoginForm onSetIsLogin={props.onSetIsLogin} />
-          <div>Вы можете войти через ЕСИА</div>
-          <div>У Вас еще нет аккаунта? Зарегистрируйтесь</div>
+          <div>
+            Вы можете войти через <a href='#'>ЕСИА</a>{' '}
+          </div>
+          <div>
+            У Вас еще нет аккаунта? <a href='#'>Зарегистрируйтесь</a>{' '}
+          </div>
         </div>
       </div>
     </section>

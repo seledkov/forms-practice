@@ -2,9 +2,13 @@
   margin: 10px auto;
   padding: 20px;
   label {
-    font-weight: bold;
+    font-family: IBM Plex Sans;
     display: block;
-    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 26px;
+    color: #333333;
+    opacity: 0.9;
+    margin-bottom: 18px;
   }
   &__wrapper {
     position: relative;
@@ -16,6 +20,7 @@
     box-sizing: border-box;
     border-radius: 8px;
     padding-left: 15px;
+    margin-bottom: 20px;
     font-family: IBM Plex Sans;
     font-size: 18px;
     line-height: 26px;
@@ -40,7 +45,35 @@
   &__actions {
     text-align: right;
   }
+  &__actions-button {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    width: 99px;
+    height: 48px;
+    background: #0084f4;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.07), 0px 4px 10px rgba(0, 0, 0, 0.08);
+    border: none;
+    border-radius: 8px;
+
+    font-family: Play;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  &__checkbox {
+    width: 20px;
+    height: 20px;
+    background: #0084f4;
+    border-radius: 6px;
+  }
   &__error-message {
+    position: absolute;
+    right: 0px;
+    bottom: -34px;
     font-size: 14px;
     line-height: 18px;
     color: #eb5757;
