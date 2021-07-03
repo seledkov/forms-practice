@@ -110,14 +110,14 @@ const GuestLoginForm = (props: any) => {
                 y='-2'
                 stroke='currentColor'
                 fill='none'
-                stroke-width='3'
+                strokeWidth='3'
                 rx='6'
                 ry='6'></rect>
               <polyline
                 className='checkbox__checkmark'
                 points='4,14 12,23 28,5'
                 stroke='transparent'
-                stroke-width='4'
+                strokeWidth='4'
                 fill='none'></polyline>
             </svg>
             <span className='custom-checkbox__text'>Запомнить меня</span>
