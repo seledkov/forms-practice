@@ -79,3 +79,73 @@
     color: #eb5757;
   }
 }
+.custom-checkbox {
+  cursor: pointer;
+  display: flex;
+  align-items: start;
+
+  --checked-state-bg-color: #0084f4;
+  --checked-state-check-color: #ffffff;
+  --outline-color: var(--checked-state-bg-color);
+  --outline-offset: 2px;
+  /* create a postioning context for the checkbox within the label */
+  position: relative;
+
+  /* other label styles here */
+
+  input[type='checkbox'] {
+    /* remove the checkbox from flow */
+    position: absolute;
+
+    /* hide it visually */
+    opacity: 0;
+
+    /* tweak size and position if needed */
+    width: 1em;
+    height: 1em;
+
+    /* position it within the label, on top of the SVG */
+    // top: 1px;
+    // left: 1px;
+
+    /* sometimes you may need to add z-index */
+    z-index: -1;
+  }
+  /* visually show focus outline when the SVG receives focus */
+  input[type='checkbox']:focus + svg {
+    outline: 3px solid #e55360;
+    outline-offset: 2px;
+  }
+
+  /* hide the focus styles for mouse users */
+  input[type='checkbox']:focus:not(:focus-visible) + svg {
+    outline: none;
+  }
+
+  /* basic styles for the svg */
+  svg {
+    /* set SVG dimensions in ems; i.e. relative to the font size so that it scales with the size of the text in the label */
+    width: 1em;
+    height: 1em;
+
+    /* ... */
+
+    /* apply a transition to the elements inside the svg */
+    * {
+      transition: all 0.1s linear;
+    }
+  }
+
+  /* style changes inside the svg when the checkbox is checked */
+  input[type='checkbox']:checked + svg {
+    .checkbox__bg {
+      fill: var(--checked-state-bg-color);
+      stroke: var(--checked-state-bg-color);
+    }
+
+    .checkbox__checkmark {
+      // stroke: var(--checked-state-checkmark-color);
+      stroke: #fff;
+    }
+  }
+}
