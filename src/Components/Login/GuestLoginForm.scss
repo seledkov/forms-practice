@@ -1,7 +1,10 @@
 .user-input-form {
-  margin: 10px auto;
-  padding: 20px;
-  label {
+  width: 452px;
+  .flex-sb {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__label {
     font-family: IBM Plex Sans;
     display: block;
     font-size: 18px;
@@ -43,9 +46,11 @@
     }
   }
   &__actions {
+    margin: 40px 0 34px 0;
     text-align: right;
   }
   &__actions-button {
+    margin: 0 auto;
     display: flex;
     align-items: center;
     padding: 16px 24px;
@@ -64,11 +69,12 @@
     text-transform: uppercase;
     color: #ffffff;
   }
-  &__checkbox {
-    width: 20px;
-    height: 20px;
-    background: #0084f4;
-    border-radius: 6px;
+  &__link {
+    font-family: Play;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration-line: underline;
+    color: #0084f4;
   }
   &__error-message {
     position: absolute;
@@ -85,18 +91,22 @@
   align-items: start;
 
   --checked-state-bg-color: #0084f4;
-  --checked-state-check-color: #ffffff;
+  --checked-state-checkmark-color: #ffffff;
   --outline-color: var(--checked-state-bg-color);
   --outline-offset: 2px;
   /* create a postioning context for the checkbox within the label */
   position: relative;
 
   /* other label styles here */
-
+  &__text {
+    font-family: Play;
+    font-size: 14px;
+    line-height: 18px;
+    color: #232428;
+  }
   input[type='checkbox'] {
     /* remove the checkbox from flow */
     position: absolute;
-
     /* hide it visually */
     opacity: 0;
 
@@ -113,8 +123,8 @@
   }
   /* visually show focus outline when the SVG receives focus */
   input[type='checkbox']:focus + svg {
-    outline: 3px solid #e55360;
-    outline-offset: 2px;
+    outline: 2px solid var(--checked-state-bg-color);
+    outline-offset: 1px;
   }
 
   /* hide the focus styles for mouse users */
@@ -128,11 +138,10 @@
     width: 1em;
     height: 1em;
 
-    /* ... */
-
+    margin: 0 12px 0 0;
     /* apply a transition to the elements inside the svg */
     * {
-      transition: all 0.1s linear;
+      transition: all 1s linear;
     }
   }
 
@@ -144,8 +153,7 @@
     }
 
     .checkbox__checkmark {
-      // stroke: var(--checked-state-checkmark-color);
-      stroke: #fff;
+      fill: var(--checked-state-checkmark-color);
     }
   }
 }
