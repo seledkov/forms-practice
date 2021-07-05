@@ -1,0 +1,45 @@
+.header {
+  height: 88px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-family: IBM Plex Sans;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 21px;
+  color: #15195f;
+  ul {
+    width: 300px;
+    list-style: none;
+    display: inline-flex;
+  }
+  &__dots-menu {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+  }
+  &__title {
+    font-family: Play;
+    font-size: 32px;
+    line-height: 37px;
+    text-transform: uppercase;
+    color: #15195f;
+  }
+  &__search-input {
+    width: 128px;
+    height: 40px;
+    border: none;
+    background-color: rgba(21, 25, 95, 0.1);
+    border-radius: 8px;
+  }
+  &__menu-select {
+    width: 130px;
+    height: 21px;
+  }
+  &__submenu {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import './GuestLoginForm.scss';
 import passShowIcon from '../../img/icons/passShowIcon.svg';
-import checkboxBox from '../../img/icons/checkboxBox.svg';
 
 const GuestLoginForm = (props: any) => {
   const [enteredLogin, setEnteredLogin] = useState('');
@@ -11,7 +10,7 @@ const GuestLoginForm = (props: any) => {
   const [isTouchedEnteredPassword, setIsTouchedEnteredPassword] = useState(false);
   const [isError, setIsError] = useState(false);
   const [passwordIsShow, setPasswordIsShow] = useState(true);
-  const [isLoginCheckbox, setIsLoginCheckbox] = useState(0);
+  const [isRememberCheckbox, setIsRememberCheckbox] = useState(false);
   //validation
   const isValidEnteredLogin = enteredLogin.length > 4 && enteredLogin.trim() !== '';
   const isValidEnteredPassword = enteredPassword.length > 4 && enteredPassword.trim() !== '';
@@ -36,15 +35,18 @@ const GuestLoginForm = (props: any) => {
   const passwordShowToogle = () => {
     setPasswordIsShow((passwordIsShow) => !passwordIsShow);
   };
+  const rememberToggleHandler = (event: any) => {
+    setIsRememberCheckbox(event.target.checked);
+  };
 
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
-
     if (!isValidEnteredLogin || !isValidEnteredPassword) {
       setIsError(true);
       return;
     }
     props.onSetIsLogin(true);
+
     setIsError(false);
     setEnteredLogin('');
     setEnteredPassword('');
@@ -104,7 +106,12 @@ const GuestLoginForm = (props: any) => {
             htmlFor='login-checkbox'
             className='user-input-form__custom-checkbox custom-checkbox'>
             {/* todo: create custom checkbox component and import svg*/}
-            <input type='checkbox' id='login-checkbox' className='custom-checkbox__input' />
+            <input
+              type='checkbox'
+              id='login-checkbox'
+              className='custom-checkbox__input'
+              onClick={rememberToggleHandler}
+            />
             <svg width='20' height='20' viewBox='0 0 20 20' aria-hidden='true' focusable='false'>
               <rect
                 className='checkbox__bg'
