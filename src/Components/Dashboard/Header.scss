@@ -1,16 +1,18 @@
 .header {
   height: 88px;
   width: 100%;
+  padding: 0 32px 0 28px;
   background-color: #fff;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   font-family: IBM Plex Sans;
   font-weight: 300;
   font-size: 16px;
   line-height: 21px;
   color: #15195f;
   ul {
-    width: 300px;
     list-style: none;
     display: inline-flex;
   }
@@ -23,6 +25,7 @@
     font-family: Play;
     font-size: 32px;
     line-height: 37px;
+    font-weight: 700;
     text-transform: uppercase;
     color: #15195f;
   }
@@ -36,6 +39,22 @@
   &__menu-select {
     width: 130px;
     height: 21px;
+  }
+  &__flex-wrapper {
+    width: 570px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__systems-nav {
+    width: 640px;
+    ul {
+      width: 640px;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
   }
   &__submenu {
     width: 200px;
