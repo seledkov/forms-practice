@@ -3,12 +3,12 @@ import './Header.scss';
 import menuDots from '../../img/icons/menuDots.svg';
 import option from '../../img/icons/option.svg';
 import subscription from '../../img/icons/subscription.svg';
-import AvatartImage from '../../img/avatarImage.png';
+import avatartImage from '../../img/avatarImage.png';
 const Header = () => {
   return (
     <header className='header'>
       <div className='header__flex-wrapper'>
-        <a className='header__menu-dots menu-dots'>
+        <a className='header__menu-dots'>
           {' '}
           <img src={menuDots} alt='menu-dots' className='menu-dots' />
         </a>
@@ -29,7 +29,7 @@ const Header = () => {
         </ul>
       </nav>
       <div className='header__submenu'>
-        <a href='#' title='helps'>
+        <a href='#' title='helps' className='header__submenu_button-link'>
           помощь
         </a>
         <a href='#' title='notification'>
@@ -40,7 +40,7 @@ const Header = () => {
         </a>
         <a href='#' title='photo'>
           {' '}
-          <img src={AvatartImage} alt='avatar' />
+          <img src={avatartImage} alt='avatar' />
         </a>
       </div>
     </header>

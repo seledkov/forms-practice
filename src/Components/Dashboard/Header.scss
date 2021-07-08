@@ -1,6 +1,5 @@
 .header {
-  height: 88px;
-  width: 100%;
+  min-height: 88px;
   padding: 0 32px 0 28px;
   background-color: #fff;
   display: flex;
@@ -13,13 +12,23 @@
   line-height: 21px;
   color: #15195f;
   ul {
+    padding: 0;
     list-style: none;
     display: inline-flex;
   }
   &__dots-menu {
-    display: inline-block;
+    display: block;
     height: 24px;
     width: 24px;
+    a {
+      margin: 0;
+      padding: 0;
+      height: 24px;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+    }
   }
   &__title {
     font-family: Play;
@@ -30,11 +39,19 @@
     color: #15195f;
   }
   &__search-input {
+    box-sizing: border-box;
     width: 128px;
     height: 40px;
+    padding-left: 15px;
     border: none;
     background-color: rgba(21, 25, 95, 0.1);
     border-radius: 8px;
+    //text
+    font-family: IBM Plex Sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+    color: #15195f;
   }
   &__menu-select {
     width: 130px;
@@ -57,8 +74,28 @@
     }
   }
   &__submenu {
-    width: 200px;
+    width: 300px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    &_button-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 98px;
+      height: 40px;
+      border: 1px solid #dddde4;
+      box-sizing: border-box;
+      border-radius: 8px;
+      //text
+      font-family: Play;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #15195f;
+      opacity: 0.7;
+    }
   }
 }
