@@ -6,8 +6,9 @@ const App = () => {
   const [isLogin, setIsLogin] = useState(false);
   return (
     <div className='App'>
-      {!isLogin && <LoginPage onSetIsLogin={setIsLogin} />}
-      {isLogin && <DashboardPage />}
+      {/* {!isLogin && <LoginPage onSetIsLogin={setIsLogin} />} */}
+      {/* {isLogin && <DashboardPage />} */}
+      <DashboardPage />
     </div>
   );
 };

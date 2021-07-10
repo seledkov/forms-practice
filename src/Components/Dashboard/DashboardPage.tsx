@@ -1,6 +1,16 @@
 import React from 'react';
 import Header from './Header';
-const userPosts: {}[] = [
+import PostCard from './PostCard';
+
+interface IUserCard {
+  name: string;
+  subname: string;
+  age: number;
+  rang: string;
+  posts: { title: string; message: string }[];
+}
+
+const usersPosts: IUserCard[] = [
   {
     name: 'name1',
     subname: 'subname1',
@@ -11,7 +21,7 @@ const userPosts: {}[] = [
         message: 'first post',
       },
     ],
-    status: 'user',
+    rang: 'user',
   },
   {
     name: 'name2',
@@ -23,7 +33,7 @@ const userPosts: {}[] = [
         message: 'first post',
       },
     ],
-    status: 'user',
+    rang: 'user',
   },
   {
     name: 'name3',
@@ -43,7 +53,7 @@ const userPosts: {}[] = [
         message: 'third post',
       },
     ],
-    status: 'admin',
+    rang: 'admin',
   },
 ];
 const DashboardPage = () => {
@@ -53,6 +63,17 @@ const DashboardPage = () => {
       <section>
         <aside>news</aside>
         markets menu / projects list
+        {usersPosts.map((user: IUserCard) => {
+          return (
+            <PostCard
+              key={Math.random()}
+              name={user.name}
+              subname={user.subname}
+              posts={user.posts}
+              rang={user.rang}
+            />
+          );
+        })}
       </section>
     </>
   );

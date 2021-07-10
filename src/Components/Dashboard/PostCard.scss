@@ -1,0 +1,16 @@
+.post-card {
+  margin: 10px;
+  padding: 0 10px;
+  background: #ffffff;
+  border: 1px solid #dddde4;
+  box-sizing: border-box;
+  border-radius: 0px 0px 16px 16px;
+  &_admin-message {
+    background: rgba(87, 102, 235, 0.1);
+    border: 1px solid #57a8eb;
+  }
+  &_user-message {
+    background: rgba(194, 194, 194, 0.1);
+    border: 1px solid #cccccc;
+  }
+}
